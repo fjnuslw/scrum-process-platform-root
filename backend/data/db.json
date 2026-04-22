@@ -1,0 +1,14 @@
+{
+  "meta": {
+    "nextIds": {
+      "story": 1,
+      "sprint": 1,
+      "retrospective": 1,
+      "burndownLog": 1
+    }
+  },
+  "stories": [],
+  "sprints": [],
+  "retrospectives": [],
+  "burndownLogs": []
+}
