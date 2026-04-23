@@ -19,13 +19,15 @@ function resetTestDb() {
         story: 1,
         sprint: 1,
         retrospective: 1,
-        burndownLog: 1
+        burndownLog: 1,
+        issue: 1
       }
     },
     stories: [],
     sprints: [],
     retrospectives: [],
-    burndownLogs: []
+    burndownLogs: [],
+    issues: []
   };
 
   fs.writeFileSync(dataFile, JSON.stringify(state, null, 2), "utf8");
@@ -63,6 +65,19 @@ async function createSprint(overrides = {}) {
   };
 
   const response = await request(app).post("/api/sprints").send(payload);
+  return response.body.data;
+}
+
+async function createIssue(overrides = {}) {
+  const payload = {
+    title: "测试问题",
+    description: "这是一个测试问题",
+    sprintId: null,
+    status: "todo",
+    ...overrides
+  };
+
+  const response = await request(app).post("/api/issues").send(payload);
   return response.body.data;
 }
 
@@ -166,4 +181,33 @@ test("回顾新增与查询可用", async () => {
 
   const queryResponse = await request(app).get(`/api/retrospectives/${sprint.id}`);
   expect(queryResponse.body.data.good1).toBe("沟通顺畅");
+});
+
+test("问题追踪管理接口可用", async () => {
+  // 测试 POST /api/issues
+  const created = await createIssue();
+  expect(created.title).toBe("测试问题");
+  expect(created.status).toBe("todo");
+
+  // 测试 GET /api/issues
+  const listResponse = await request(app).get("/api/issues");
+  expect(listResponse.body.data).toHaveLength(1);
+
+  // 测试 PUT /api/issues/:id
+  const updateResponse = await request(app)
+    .put(`/api/issues/${created.id}`)
+    .send({
+      title: "更新的测试问题",
+      description: "这是一个更新后的测试问题",
+      sprintId: null,
+      status: "in_progress"
+    });
+  expect(updateResponse.body.data.title).toBe("更新的测试问题");
+  expect(updateResponse.body.data.status).toBe("in_progress");
+
+  // 测试 PATCH /api/issues/:id/status
+  const statusResponse = await request(app)
+    .patch(`/api/issues/${created.id}/status`)
+    .send({ status: "closed" });
+  expect(statusResponse.body.data.status).toBe("closed");
 });
