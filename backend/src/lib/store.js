@@ -14,14 +14,16 @@ const DEFAULT_STATE = {
       sprint: 1,
       retrospective: 1,
       burndownLog: 1,
-      issue: 1
+      issue: 1,
+      task: 1
     }
   },
   stories: [],
   sprints: [],
   retrospectives: [],
   burndownLogs: [],
-  issues: []
+  issues: [],
+  tasks: []
 };
 
 function clone(value) {
@@ -73,7 +75,8 @@ export function readData() {
     sprints: parsed.sprints || [],
     retrospectives: parsed.retrospectives || [],
     burndownLogs: parsed.burndownLogs || [],
-    issues: parsed.issues || []
+    issues: parsed.issues || [],
+    tasks: parsed.tasks || []
   };
 }
 

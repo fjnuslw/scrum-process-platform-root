@@ -134,6 +134,9 @@ router.delete("/:id", (req, res) => {
     priorityOrder: index + 1
   }));
 
+  // 删除关联的技术任务
+  data.tasks = data.tasks.filter((task) => task.storyId !== id);
+
   writeData(data);
   return ok(res, normalizeStory(story), "删除成功");
 });

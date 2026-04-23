@@ -211,3 +211,48 @@ test("问题追踪管理接口可用", async () => {
     .send({ status: "closed" });
   expect(statusResponse.body.data.status).toBe("closed");
 });
+
+test("技术任务拆解接口可用", async () => {
+  // 创建一个故事用于测试
+  const story = await createStory({ title: "测试故事" });
+  
+  // 测试 POST /api/stories/:id/tasks
+  const createTaskResponse = await request(app)
+    .post(`/api/stories/${story.id}/tasks`)
+    .send({
+      title: "测试任务",
+      estimatedHours: 2.5,
+      status: "todo"
+    });
+  expect(createTaskResponse.body.data.title).toBe("测试任务");
+  expect(createTaskResponse.body.data.estimatedHours).toBe(2.5);
+  expect(createTaskResponse.body.data.status).toBe("todo");
+
+  // 测试 GET /api/stories/:id/tasks
+  const listTasksResponse = await request(app).get(`/api/stories/${story.id}/tasks`);
+  expect(listTasksResponse.body.data).toHaveLength(1);
+  const taskId = listTasksResponse.body.data[0].id;
+
+  // 测试 PUT /api/tasks/:id
+  const updateTaskResponse = await request(app)
+    .put(`/api/tasks/${taskId}`)
+    .send({
+      title: "更新的测试任务",
+      estimatedHours: 3.5,
+      status: "in_progress"
+    });
+  expect(updateTaskResponse.body.data.title).toBe("更新的测试任务");
+  expect(updateTaskResponse.body.data.estimatedHours).toBe(3.5);
+  expect(updateTaskResponse.body.data.status).toBe("in_progress");
+
+  // 测试 PATCH /api/tasks/:id/status
+  const statusTaskResponse = await request(app)
+    .patch(`/api/tasks/${taskId}/status`)
+    .send({ status: "done" });
+  expect(statusTaskResponse.body.data.status).toBe("done");
+
+  // 测试删除故事时，关联的任务被清理
+  await request(app).delete(`/api/stories/${story.id}`);
+  const afterDeleteResponse = await request(app).get(`/api/stories/${story.id}/tasks`);
+  expect(afterDeleteResponse.body.data).toHaveLength(0);
+});

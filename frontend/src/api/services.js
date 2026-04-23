@@ -78,7 +78,19 @@ export const api = {
   },
   updateIssueStatus(id, status) {
     return client.patch(`/issues/${id}/status`, { status });
+  },
+  getTasks(storyId) {
+    return client.get(`/stories/${storyId}/tasks`);
+  },
+  createTask(storyId, payload) {
+    return client.post(`/stories/${storyId}/tasks`, payload);
+  },
+  updateTask(id, payload) {
+    return client.put(`/tasks/${id}`, payload);
+  },
+  updateTaskStatus(id, status) {
+    return client.patch(`/tasks/${id}/status`, { status });
   }
 };
 
-export const { getIssues, createIssue, updateIssue, updateIssueStatus } = api;
+export const { getIssues, createIssue, updateIssue, updateIssueStatus, getTasks, createTask, updateTask, updateTaskStatus } = api;
