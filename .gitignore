@@ -13,7 +13,7 @@ yarn-error.log*
 pnpm-debug.log*
 .tmp_experiment_requirements.docx
 docs/report_*_tmp.docx
-docs/*_更新前备份.docx
-docs/*_继续完善前备份.docx
-docs/*备份.docx
+docs/report_before_*.docx
+docs/*备份*.docx
+docs/_backup/
 ~$*.docx

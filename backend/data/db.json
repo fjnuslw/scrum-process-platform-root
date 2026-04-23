@@ -1,14 +1,55 @@
 {
   "meta": {
     "nextIds": {
-      "story": 1,
-      "sprint": 1,
+      "story": 4,
+      "sprint": 2,
       "retrospective": 1,
-      "burndownLog": 1
+      "burndownLog": 2
     }
   },
-  "stories": [],
-  "sprints": [],
+  "stories": [
+    {
+      "id": 2,
+      "title": "支持新增用户故事",
+      "description": "作为产品负责人，我想要录入用户故事，以便后续进行 backlog 排序和迭代规划。",
+      "storyPoints": 3,
+      "priorityOrder": 1,
+      "status": "todo",
+      "sprintId": 1,
+      "createdAt": "2026-04-22T13:34:27.848Z",
+      "updatedAt": "2026-04-22T13:38:00.609Z"
+    },
+    {
+      "id": 3,
+      "title": "支持查看迭代计划",
+      "description": "作为团队成员，我想要查看 Sprint 信息，以便明确当前迭代目标与任务范围。",
+      "storyPoints": 5,
+      "priorityOrder": 2,
+      "status": "todo",
+      "sprintId": 1,
+      "createdAt": "2026-04-22T13:34:39.787Z",
+      "updatedAt": "2026-04-22T13:38:01.687Z"
+    }
+  ],
+  "sprints": [
+    {
+      "id": 1,
+      "name": "Sprint 1 - 基础功能开发",
+      "startDate": "2026-04-22",
+      "endDate": "2026-04-28",
+      "goal": "完成用户故事管理、迭代计划与拖拽分配的基础能力。",
+      "createdAt": "2026-04-22T13:36:45.736Z",
+      "updatedAt": "2026-04-22T13:36:45.736Z"
+    }
+  ],
   "retrospectives": [],
-  "burndownLogs": []
+  "burndownLogs": [
+    {
+      "id": 1,
+      "sprintId": 1,
+      "date": "2026-04-22",
+      "remainingPoints": 8,
+      "createdAt": "2026-04-22T13:38:00.609Z"
+    }
+  ]
 }
