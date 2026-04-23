@@ -66,5 +66,19 @@ export const api = {
   },
   updateRetrospective(id, payload) {
     return client.put(`/retrospectives/${id}`, payload);
+  },
+  getIssues() {
+    return client.get("/issues");
+  },
+  createIssue(payload) {
+    return client.post("/issues", payload);
+  },
+  updateIssue(id, payload) {
+    return client.put(`/issues/${id}`, payload);
+  },
+  updateIssueStatus(id, status) {
+    return client.patch(`/issues/${id}/status`, { status });
   }
 };
+
+export const { getIssues, createIssue, updateIssue, updateIssueStatus } = api;

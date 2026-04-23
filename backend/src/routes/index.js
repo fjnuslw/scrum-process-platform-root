@@ -3,6 +3,7 @@ import backlogRouter from "./backlog.js";
 import retrospectivesRouter from "./retrospectives.js";
 import sprintsRouter from "./sprints.js";
 import storiesRouter from "./stories.js";
+import issuesRouter from "./issues.js";
 import { ok } from "../utils/response.js";
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.use("/stories", storiesRouter);
 router.use("/backlog", backlogRouter);
 router.use("/sprints", sprintsRouter);
 router.use("/retrospectives", retrospectivesRouter);
+issuesRouter(router);
 
 export default router;

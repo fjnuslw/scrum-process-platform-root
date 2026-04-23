@@ -4,7 +4,8 @@
       "story": 4,
       "sprint": 2,
       "retrospective": 1,
-      "burndownLog": 2
+      "burndownLog": 2,
+      "issue": 2
     }
   },
   "stories": [
@@ -50,6 +51,17 @@
       "date": "2026-04-22",
       "remainingPoints": 8,
       "createdAt": "2026-04-22T13:38:00.609Z"
+    }
+  ],
+  "issues": [
+    {
+      "id": 1,
+      "title": "看板状态切换后燃尽图未及时刷新",
+      "description": "在 Sprint 看板中将故事从进行中拖拽到已完成后，燃尽图页面未立即体现剩余故事点变化，需要进一步确认数据更新链路。",
+      "sprintId": 1,
+      "status": "closed",
+      "createdAt": "2026-04-23T10:05:23.916Z",
+      "updatedAt": "2026-04-23T10:06:27.304Z"
     }
   ]
 }

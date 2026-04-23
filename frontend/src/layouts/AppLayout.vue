@@ -19,7 +19,8 @@ const menus = [
   { index: "stories", label: "用户故事", path: "/stories" },
   { index: "backlog", label: "产品待办", path: "/backlog" },
   { index: "sprints", label: "迭代计划", path: "/sprints" },
-  { index: "retrospectives", label: "迭代回顾", path: "/retrospectives" }
+  { index: "retrospectives", label: "迭代回顾", path: "/retrospectives" },
+  { index: "issues", label: "问题追踪", path: "/issues" }
 ];
 
 function navigate(path) {
@@ -60,7 +61,7 @@ function navigate(path) {
           <h2>{{ route.meta.title || "Scrum 平台" }}</h2>
         </div>
         <p class="banner-note">
-          当前仅实现课程要求中的基础版功能，不扩展复杂权限与增强模块。
+          已实现课程要求中的基础版功能，并新增问题追踪管理模块。
         </p>
       </header>
 

@@ -7,6 +7,7 @@ import RetrospectiveDetailView from "@/views/retrospectives/RetrospectiveDetailV
 import RetrospectiveListView from "@/views/retrospectives/RetrospectiveListView.vue";
 import SprintsView from "@/views/sprints/SprintsView.vue";
 import StoriesView from "@/views/stories/StoriesView.vue";
+import IssuesView from "@/views/issues/IssuesView.vue";
 
 const routes = [
   {
@@ -55,6 +56,12 @@ const routes = [
         name: "retrospective-detail",
         component: RetrospectiveDetailView,
         meta: { title: "迭代回顾" }
+      },
+      {
+        path: "issues",
+        name: "issues",
+        component: IssuesView,
+        meta: { title: "问题追踪管理" }
       }
     ]
   }

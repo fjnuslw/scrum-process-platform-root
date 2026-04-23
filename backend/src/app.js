@@ -6,7 +6,14 @@ import { fail, ok } from "./utils/response.js";
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ encoding: 'utf-8' }));
+app.use(express.urlencoded({ extended: true, encoding: 'utf-8' }));
+
+// 设置响应头，确保中文正确显示
+app.use((req, res, next) => {
+  res.setHeader('Content-Type', 'application/json; charset=utf-8');
+  next();
+});
 
 app.get("/api/health", (req, res) => ok(res, { status: "ok" }));
 app.use("/api", apiRouter);
