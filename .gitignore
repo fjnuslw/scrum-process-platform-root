@@ -15,5 +15,6 @@ pnpm-debug.log*
 docs/report_*_tmp.docx
 docs/report_before_*.docx
 docs/*备份*.docx
+docs/*更新版*.docx
 docs/_backup/
 ~$*.docx
